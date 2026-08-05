@@ -119,7 +119,7 @@ function Appointment() {
               exit="exit"
 
             >
-              <Card className="w-100 max-w-sm items-center">
+              <Card className="w-100 max-w-sm items-center overflow-visible">
                 <CardHeader className="w-[inherit] justify-self-center">
                   <CardTitle className="text-2xl justify-self-center">
                     Save the Date

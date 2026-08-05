@@ -10,7 +10,7 @@ interface FleeingButtonProps extends ButtonProps {
   fleeDistance?: number;
 }
 
-export function FleeingButton({ children, fleeDistance = 100, ...props }: FleeingButtonProps) {
+export function FleeingButton({ children, onClick, fleeDistance = 100, ...props }: FleeingButtonProps) {
 
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [style, setStyle] = useState<React.CSSProperties>({});
@@ -55,11 +55,11 @@ export function FleeingButton({ children, fleeDistance = 100, ...props }: Fleein
   // MOBILE logic
   const handleTouchStart = (e: React.TouchEvent) => {
     e.preventDefault();
-    const randomX = (Math.random() - 0.5) * 300;
-    const randomY = (Math.random() - 0.5) * 300;
+    const randomX = (Math.random() - 0.5) * 150;
+    const randomY = (Math.random() - 0.5) * 150;
 
     setStyle({
-      transform: `trabslate(${randomX}px, ${randomY}px)`,
+      transform: `translate(${randomX}px, ${randomY}px)`,
       transition: `transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1)`,
     });
   };
@@ -79,6 +79,15 @@ export function FleeingButton({ children, fleeDistance = 100, ...props }: Fleein
         variant="ghost"
         className="p-0 bg-transparent hover:bg-transparent shadow-none"
         aria-label="No"
+        onClick={(e) => {
+          // Extra guard: Ignore clicks on mobile touch screens
+          if (window.matchMedia("(pointer: coarse)").matches) {
+            e.preventDefault();
+            e.stopPropagation();
+            return;
+          }
+          if (onClick) onClick(e);
+        }}
       >
         <img
           src={NoNormal}
