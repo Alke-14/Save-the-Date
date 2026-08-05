@@ -2,6 +2,7 @@
 
 import React, { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
+import NoNormal from "@/assets/buttons/No_Normal.svg"
 
 type ButtonProps = React.ComponentProps<typeof Button>;
 
@@ -10,6 +11,7 @@ interface FleeingButtonProps extends ButtonProps {
 }
 
 export function FleeingButton({ children, fleeDistance = 100, ...props }: FleeingButtonProps) {
+
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [style, setStyle] = useState<React.CSSProperties>({});
 
@@ -64,7 +66,7 @@ export function FleeingButton({ children, fleeDistance = 100, ...props }: Fleein
 
   return (
     <div
-      className="inline-block p-20 -m-20 select-none touch-none"
+      className="inline-block p-6 -m-6 select-none touch-none"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
@@ -74,8 +76,15 @@ export function FleeingButton({ children, fleeDistance = 100, ...props }: Fleein
         onTouchStart={handleTouchStart}
         {...props}
         size="lg"
-        className="text-[15px]"
+        variant="ghost"
+        className="p-0 bg-transparent hover:bg-transparent shadow-none"
+        aria-label="No"
       >
+        <img
+          src={NoNormal}
+          alt="No"
+          className="w-full h-full object-contain"
+        />
         {children}
       </Button>
     </div>
