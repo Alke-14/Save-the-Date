@@ -8,7 +8,6 @@ import type { Variants } from "framer-motion";
 import { format } from "date-fns";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue,} from "@/components/ui/select";
 import { Share2, Copy, Check, CalendarPlus } from "lucide-react";
-
 import YesNormal from "@/assets/buttons/Yes_Normal.svg";
 import YesSunken from "@/assets/buttons/Yes_Sunken.svg";
 import ConfirmNormal from "@/assets/buttons/Confirm_Normal.svg";
